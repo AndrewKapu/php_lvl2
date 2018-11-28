@@ -87,4 +87,15 @@
             
         }
     }
+
+
+    class PersonalCart extends Cart {
+        /**
+         * Делает скидку              
+         * @return void
+         */
+        private function setDiscount($code) {
+            //Снижает стоимость товаров в корзине, если был введён существующий промокод.
+        }
+    }
 ?>    
