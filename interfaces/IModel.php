@@ -1,6 +1,6 @@
 <?php
 
-namespace php_lvl2\interfaces;
+namespace app\interfaces;
 
 
 interface IModel

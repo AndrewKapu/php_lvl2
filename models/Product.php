@@ -1,9 +1,9 @@
 <?php
-namespace php_lvl2\models;
+namespace app\models;
 
 /**
  * Class Product описывает сущность товара
- * @package php_lvl2\models
+ * @package app\models
  */
 class Product extends Model
 {

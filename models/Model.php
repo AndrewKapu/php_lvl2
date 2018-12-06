@@ -1,13 +1,13 @@
 <?php
 
-namespace php_lvl2\models;
+namespace app\models;
 
-use php_lvl2\interfaces\IModel;
-use php_lvl2\services\Db;
+use app\interfaces\IModel;
+use app\services\Db;
 
 /**
  * Class Model описывает функционал базового интерфейса IModel
- * @package php_lvl2\models
+ * @package app\models
  */
 abstract class Model implements IModel
 {

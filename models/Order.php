@@ -1,10 +1,10 @@
 <?php
 
-namespace php_lvl2\models;
+namespace app\models;
 
 /**
  * Class Product описывает сущность заказа
- * @package php_lvl2\models
+ * @package app\models
  */
 class Order extends Model
 {
