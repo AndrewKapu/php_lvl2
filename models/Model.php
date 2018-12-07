@@ -12,23 +12,34 @@ use app\services\Db;
 abstract class Model implements IModel
 {
     protected $db;
+    /**
+     * Названия столбцов сущности в бд
+     * @var array
+     */
+    protected $cols = [];
 
     public function __construct()
     {
-        $this->db = new Db();
+        $this->db = Db::getInstance();
     }
 
-    public function getOne(int $id): array
+    public function getOne(int $id): object
     {
-        $sql = "SELECT * FROM {this->tableName} WHERE id = {this->id}";
-        $this->db->queryOne($sql);
+        $tableName = $this->getTableName();
+        $sql = "SELECT * FROM {$tableName} WHERE id = :id";
+        return $this->db->queryOne($sql, $this->getClassName(), [':id' => $id]);
     }
 
     public function getAll(): array
     {
-        $sql = "SELECT * FROM {this->tableName}";
-        $this->db->queryAll($sql);
+        $tableName = $this->getTableName();
+        $sql = "SELECT * FROM {$tableName}";
+        return $this->db->queryAll($sql, $this->getClassName());
     }
 
+    public function getCols(): array
+    {
+        return $this->cols;
+    }
 
 }

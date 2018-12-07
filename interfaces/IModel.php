@@ -8,9 +8,9 @@ interface IModel
     /**
      * Возвращает одну запись из БД
      * @param int $id идентификатор сущности
-     * @return array соответствующая запись из БД
+     * @return object соответствующая запись из БД
      */
-    public function getOne(int $id) : array;
+    public function getOne(int $id) : object;
 
     /**
      * Возвращает некоторе кол-во записей из БД
@@ -23,4 +23,18 @@ interface IModel
      * @return string название сущности
      */
     public function getTableName() : string;
+
+    /**
+     * Возвращает правильный набор имён столбцов
+     * @return array
+     */
+    public function getCols(): array;
+
+    /**
+     * Возвращает название класса
+     * @return array
+     */
+    public function getClassName();
+
+
 }

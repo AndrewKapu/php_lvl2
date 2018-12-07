@@ -11,10 +11,19 @@ class Product extends Model
     public $name;
     public $price;
     public $description;
-    public $brand_id;
+    public $category_id;
+    public $producer_id;
+
 
     public function getTableName(): string
     {
         return 'products';
     }
+
+    public function getClassName(): string
+    {
+        return 'Product';
+    }
+
+
 }
