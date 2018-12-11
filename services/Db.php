@@ -35,7 +35,7 @@ class Db
             );
 
             $this->conn->setAttribute(
-                \PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_CLASS
+                \PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC
             );
         }
         return $this->conn;
@@ -48,7 +48,7 @@ class Db
         return $pdoStatement;
     }
 
-    private function execute($sql, $params = [])
+    public function execute($sql, $params = [])
     {
        $pdoStatement = $this->query($sql, $params);
        return $pdoStatement->rowCount();
@@ -56,18 +56,31 @@ class Db
 
     /**
      * @param $sql
-     * @param $className
      * @param array $params
      * @return object
      */
-    public function queryOne($sql, $className, $params = [])
+    public function queryOne($sql, $params = [])
     {
-        return $this->queryAll($sql, $className, $params)[0];
+        return $this->queryAll($sql, $params)[0];
     }
 
-    public function queryAll($sql, $className, $params = [])
+    public function queryAll($sql, $params = [])
     {
-       return $this->query($sql, $params)->fetchAll(\PDO::FETCH_CLASS, 'app\models\\' . $className);
+       return $this->query($sql, $params)->fetchAll();
+    }
+
+    public function queryObject($sql, $params = [], $class)
+    {
+        $pdoStatement = $this->query($sql, $params);
+        $pdoStatement->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $class);
+        return $pdoStatement->fetch();
+    }
+
+    public function queryObjects($sql, $params = [], $class)
+    {
+        $pdoStatement = $this->query($sql, $params);
+        $pdoStatement->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $class);
+        return $pdoStatement->fetchAll();
     }
 
     public function prepareDsnString()
