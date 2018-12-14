@@ -4,15 +4,10 @@ namespace app\controllers;
 
 
 use app\models\Category;
-use app\models\Controller;
 
 class CategoryController extends Controller
 {
     private $tplFolderName = 'category/';
-    protected $action;
-    protected $defaultAction = "index";
-    protected $useLayout = true;
-    protected $layout = 'main';
 
     public function getTplFolderName(): string
     {

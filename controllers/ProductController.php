@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 
-use app\models\Controller;
 use app\models\Product;
 
 class ProductController extends Controller
@@ -13,23 +12,20 @@ class ProductController extends Controller
      * @var string
      */
     private $tplFolderName = 'product/';
-    protected $action;
-    protected $defaultAction = "index";
-    protected $useLayout = true;
-    protected $layout = 'main';
+
 
 
     public function actionIndex()
     {
         $products = Product::getAll();
-         echo $this->render('products', ['products' => $products]);
+         echo $this->render('twigProducts', ['products' => $products]);
     }
 
     public function actionCard()
     {
         $id = $_GET['id'];
         $product = Product::getOne($id);
-        echo $this->render('card', ['product' => $product]);
+        echo $this->render('twigCard', ['product' => $product]);
     }
 
 

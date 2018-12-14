@@ -1,0 +1,11 @@
+{
+    "name": "runmaster/php_lvl2",
+    "require": {
+        "twig/twig": "^2.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "app\\": ""
+        }
+    }
+}

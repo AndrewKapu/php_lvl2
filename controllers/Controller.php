@@ -1,12 +1,31 @@
 <?php
 
-namespace app\models;
+namespace app\controllers;
 
 
 use app\interfaces\IController;
+use app\interfaces\IRenderer;
+use app\services\renderers\TemplateRenderer;
+use app\services\renderers\TwigRenderer;
 
 abstract class Controller implements IController
 {
+
+    protected $action;
+    protected $defaultAction = "index";
+    protected $useLayout = true;
+    protected $layout = 'main';
+
+    protected $renderer;
+
+    public function __construct(IRenderer $renderer)
+    {
+        $this->renderer = $renderer;
+        if ($renderer instanceof TwigRenderer) {
+            $this->useLayout = false;
+        }
+    }
+
 
     public function runAction($action = null)
     {
@@ -43,12 +62,7 @@ abstract class Controller implements IController
      */
     protected function renderTemplate($template, $params)
     {
-        ob_start();
-        extract($params);
-        $templatePath = TEMPLATES_DIR . $template . '.php';
-        include $templatePath;
-        return ob_get_clean();
+       return $this->renderer->render($template, $params);
     }
-
 
 }
