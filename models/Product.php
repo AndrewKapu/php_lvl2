@@ -25,7 +25,6 @@ class Product extends Record
      */
     public function __construct($id = null, $name = null, $description = null, $price = null, $category_id = null, $producer_id = null)
     {
-        parent::__construct();
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
@@ -34,11 +33,11 @@ class Product extends Record
         $this->producer_id = $producer_id;
     }
 
-
-    public static function getTableName(): string
+    public function __get($name)
     {
-        return 'products';
+        if(isset($this->properties[$name])){
+            return $this->properties[$name];
+        }
+        return null;
     }
-
-
 }

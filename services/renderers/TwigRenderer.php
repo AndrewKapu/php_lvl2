@@ -7,11 +7,18 @@ use app\interfaces\IRenderer;
 
 class TwigRenderer implements IRenderer
 {
-    public function render($template, $params = [])
+    protected $templater;
+
+    public function __construct()
     {
         $loader = new  \Twig_Loader_Filesystem(TEMPLATES_DIR);
-        $twig = new \Twig_Environment($loader);
-        $template = $twig->load($template . '.php');
+        $this->templater = new \Twig_Environment($loader);
+
+    }
+
+    public function render($template, $params = [])
+    {
+        $template = $this->templater->load($template . '.php');
         echo $template->render($params);
     }
 

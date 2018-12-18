@@ -4,6 +4,8 @@ namespace app\controllers;
 
 
 use app\models\Product;
+use app\models\repositories\ProductRepository;
+use app\services\Request;
 
 class ProductController extends Controller
 {
@@ -17,15 +19,15 @@ class ProductController extends Controller
 
     public function actionIndex()
     {
-        $products = Product::getAll();
-         echo $this->render('twigProducts', ['products' => $products]);
+        $products = (new ProductRepository())->getAll();
+         echo $this->render('products', ['products' => $products]);
     }
 
     public function actionCard()
     {
-        $id = $_GET['id'];
-        $product = Product::getOne($id);
-        echo $this->render('twigCard', ['product' => $product]);
+        $id = (new Request())->getParams()['id'];
+        $product = (new ProductRepository())->getOne($id);
+        echo $this->render('card', ['product' => $product]);
     }
 
 
