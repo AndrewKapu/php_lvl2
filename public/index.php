@@ -1,19 +1,7 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
-require ROOT_DIR . 'vendor/autoload.php';
+$config = include $_SERVER['DOCUMENT_ROOT'] . "/../config/main.php";
+require $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
 
+session_start();
 
-$request = new \app\services\Request();
-$controllerName = $request->getControllerName()?: DEFAULT_CONTROLLER;
-$actionName = $request->getActionName();
-
-$controllerClass = CONTROLLERS_NAMESPACE . ucfirst($controllerName) . "Controller";
-
-if (class_exists($controllerClass)){
-
-    /** @var \app\controllers\ProductController $controller */
-    $controller = new $controllerClass(
-        new \app\services\renderers\TemplateRenderer()
-    );
-    $controller->runAction($actionName);
-}
+\app\base\App::call()->run($config);

@@ -3,6 +3,7 @@
 namespace app\services\renderers;
 
 
+use app\base\App;
 use app\interfaces\IRenderer;
 
 class TemplateRenderer implements IRenderer
@@ -11,7 +12,7 @@ class TemplateRenderer implements IRenderer
     {
         ob_start();
         extract($params);
-        $templatePath = TEMPLATES_DIR . $template . '.php';
+        $templatePath = App::call()->config['templatesDir'] . $template . '.php';
         include $templatePath;
         return ob_get_clean();
     }

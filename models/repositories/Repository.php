@@ -2,6 +2,7 @@
 
 namespace app\models\repositories;
 
+use app\base\App;
 use app\interfaces\IRepository;
 use app\models\Record;
 use app\services\Db;
@@ -23,7 +24,7 @@ abstract class Repository implements IRepository
 
     public function getDb()
     {
-        return Db::getInstance();
+        return App::call()->db;
     }
 
     public function getOne(int $id): Record
@@ -95,6 +96,11 @@ abstract class Repository implements IRepository
         }else{
             $this->update($record);
         }
+    }
+
+    public function find($sql, $params = [])
+    {
+        return $this->db->queryObjects($sql, $params, $this->getEntityClass());
     }
 
 }

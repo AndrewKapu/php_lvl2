@@ -8,12 +8,14 @@ class Request
     protected $requestString;
     protected $controllerName;
     protected $actionName;
-    protected $params;
+    public $params;
+    protected $requestMethod;
 
     public function __construct()
     {
         $this->requestString = $_SERVER['REQUEST_URI'];
         $this->parseRequest();
+        $this->params = $_REQUEST;
     }
 
     private function parseRequest()
@@ -41,21 +43,24 @@ class Request
         return $this->params;
     }
 
-    public function getRequestMethod()
+    protected function getRequestMethod()
     {
         return $_SERVER['REQUEST_METHOD'];
     }
 
+    public function isPost()
+    {
+        return $this->getRequestMethod() === 'POST';
+    }
+
+    public function isGet()
+    {
+        return $this->getRequestMethod() === 'GET';
+    }
+
     public function isAjax()
     {
-        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-        {
-            return true;
-        }
-
-        else {
-            return false;
-        }
+       return $_SERVER['HTTP_X_REQUEST_WITH'] === 'XMLHttpRequest';
     }
 
     public function getRequestParam($param)

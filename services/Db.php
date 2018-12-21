@@ -13,17 +13,22 @@ class Db
 {
     use TSingletone;
 
-    private $config = [
-        'driver' => 'mysql',
-        'host' => 'localhost',
-        'login' => 'root',
-        'password' => '',
-        'database' => 'rose',
-        'charset' => 'utf8'
-    ];
+    private $config;
 
     /** @var \PDO */
     private $conn = null;
+
+    public function __construct($driver, $host, $login, $password, $database, $charset)
+    {
+        $this->config = [
+            'driver' => $driver,
+            'host' => $host,
+            'login' => $login,
+            'password' => $password,
+            'database' => $database,
+            'charset' => $charset
+        ];
+    }
 
     private function getConnection()
     {

@@ -11,9 +11,12 @@
 </head>
 <body>
 <div class="header">Это хедер
+    <?php if(empty($_SESSION['isLogged'])):?>
+        <a href="/user/register">Зарегестрироваться</a>
+    <?php endif;?>
     <a href="/basket/index"> Корзина</a>
 </div>
-<div class="content"><?=$content?></div>
+<div class="content"><?= $content ?></div>
 <div class="footer">Это футер</div>
 </body>
 </html>

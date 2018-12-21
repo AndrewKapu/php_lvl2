@@ -16,9 +16,10 @@ class ProductRepository extends Repository
         return Product::class;
     }
 
-    public function getProductsWithDiscount()
+    public function getProductsByIds(array $ids)
     {
-
+        $in = implode(', ', $ids);
+        return $this->find("SELECT * FROM products WHERE id IN ({$in})", []);
     }
 
 }

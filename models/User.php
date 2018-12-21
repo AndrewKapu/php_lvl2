@@ -12,6 +12,20 @@ class User extends Record
     public $login;
     public $password;
 
+    /**
+     * User constructor.
+     * @param $id
+     * @param $login
+     * @param $password
+     */
+    public function __construct($id = null, $login = null, $password = null)
+    {
+        $this->id = $id;
+        $this->login = $login;
+        $this->password = $password;
+    }
+
+
     public static function getTableName(): string
     {
         return 'users';
