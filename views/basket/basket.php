@@ -8,7 +8,7 @@
         </div>
     <?php endforeach;?>
 <?php endif;?>
-<a href="/basket/checkout">Оформить заказ</a>
+<a href="/order/orderForm">Оформить заказ</a>
 <script>
     $(document).ready(() => {
         let delBtn = $('#del-btn');
