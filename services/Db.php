@@ -97,4 +97,9 @@ class Db
             $this->config['charset']
         );
     }
+
+    public function getLastInsertId()
+    {
+        return $this->conn->lastInsertId();
+    }
 }

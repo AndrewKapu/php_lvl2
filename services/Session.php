@@ -17,6 +17,11 @@ class Session
 
     public function set($key, $value)
     {
-        $_SESSION[$key][$value];
+        $_SESSION[$key] = $value;
+    }
+
+    public function unset($key)
+    {
+        unset($_SESSION[$key]);
     }
 }

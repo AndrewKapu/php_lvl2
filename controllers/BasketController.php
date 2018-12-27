@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 
+use app\base\App;
 use app\models\Basket;
 use app\models\repositories\ProductRepository;
 use app\services\Request;
@@ -18,7 +19,8 @@ class BasketController extends Controller
 
     public function actionAdd()
     {
-        $request = new Request();
+        /** @var Request $request */
+        $request = App::call()->request;
         if ($request->isPost()){
             $productId = $request->getRequestParam('id');
             $productQty = $request->getRequestParam('qty');
@@ -29,7 +31,8 @@ class BasketController extends Controller
 
     public function actionDel()
     {
-        $request = new Request();
+        /** @var Request $request */
+        $request = App::call()->request;
         if ($request->isPost()) {
             $productId = $request->getRequestParam('id');
             (new Basket())->del($productId);
@@ -42,15 +45,6 @@ class BasketController extends Controller
         echo $this->render('orderForm', []);
     }
 
-    public function actionOrderForm()
-    {
-        var_dump('Функционал не готов'); exit;
-        $request = new Request();
-        if ($request->isPost()) {
-            $name = $request->getRequestParam('name');
-            $city = $request->getRequestParam('city');
-        }
-    }
 
     public function getTplFolderName(): string
     {
