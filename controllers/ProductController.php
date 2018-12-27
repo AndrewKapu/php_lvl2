@@ -10,12 +10,6 @@ use app\services\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Название папки с шаблонами для данного контроллера
-     * @var string
-     */
-    private $tplFolderName = 'product/';
-
 
 
     public function actionIndex()
@@ -34,7 +28,7 @@ class ProductController extends Controller
 
     public function getTplFolderName(): string
     {
-        return $this->tplFolderName;
+        return 'product/';
     }
 
 

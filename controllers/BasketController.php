@@ -10,7 +10,6 @@ use app\services\Request;
 
 class BasketController extends Controller
 {
-    private $tplFolderName = 'basket/';
 
     public function actionIndex()
     {
@@ -48,7 +47,7 @@ class BasketController extends Controller
 
     public function getTplFolderName(): string
     {
-        return $this->tplFolderName;
+        return 'basket/';
     }
 
 }

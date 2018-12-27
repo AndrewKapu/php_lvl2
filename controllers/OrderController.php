@@ -15,7 +15,6 @@ use app\services\Session;
 class OrderController extends Controller
 {
 
-    private $tplFolderName = 'order/';
 
     /**
      *Добавляет заказ пользователя в БД
@@ -51,7 +50,7 @@ class OrderController extends Controller
 
     public function getTplFolderName(): string
     {
-        return $this->tplFolderName;
+        return 'order/';
     }
 
     /**

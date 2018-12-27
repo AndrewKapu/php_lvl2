@@ -14,8 +14,6 @@ class UserController extends Controller
 {
 
 
-    private $tplFolderName = 'user/';
-
     /**
      *Регестрирует нового пользователя в нашей системе
      */
@@ -86,7 +84,7 @@ class UserController extends Controller
 
     public function getTplFolderName(): string
     {
-        return $this->tplFolderName;
+        return 'user/';
     }
 
     private function findUser($login)

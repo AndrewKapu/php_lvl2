@@ -7,11 +7,10 @@ use app\models\Category;
 
 class CategoryController extends Controller
 {
-    private $tplFolderName = 'category/';
 
     public function getTplFolderName(): string
     {
-        return $this->tplFolderName;
+        return 'category/';
     }
 
     public function actionIndex()
