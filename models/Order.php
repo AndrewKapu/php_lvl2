@@ -10,11 +10,26 @@ class Order extends Record
 {
     public $id;
     public $user_id;
-    public $order;
+    public $address;
+    public $status;
+    public $date;
 
-    public static function getTableName(): string
+    /**
+     * Order constructor.
+     * @param $id
+     * @param $user_id
+     * @param $address
+     * @param $status
+     * @param $date
+     */
+    public function __construct($id = null, $user_id = null, $address = null, $status = null, $date = null)
     {
-        return 'orders';
+        $this->id = $id;
+        $this->user_id = $user_id;
+        $this->address = $address;
+        $this->status = $status;
+        $this->date = $date;
     }
+
 
 }

@@ -9,6 +9,7 @@ namespace app\models;
 class User extends Record
 {
     public $id;
+    public $name;
     public $login;
     public $password;
 
@@ -18,17 +19,13 @@ class User extends Record
      * @param $login
      * @param $password
      */
-    public function __construct($id = null, $login = null, $password = null)
+    public function __construct($id = null, $name = null, $login = null, $password = null)
     {
         $this->id = $id;
+        $this->name = $name;
         $this->login = $login;
         $this->password = $password;
     }
 
-
-    public static function getTableName(): string
-    {
-        return 'users';
-    }
 
 }
